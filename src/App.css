@@ -1,1 +1,441 @@
-/* Paste your Assignment 1 styles.css here. Keep the icons in src/assets/ so url(assets/...) paths keep working. */
+/* ============================================================
+   ASSIGNMENT 1 — TASK MANAGER
+   All styles for the static interface.
+   Layout method: Flexbox.
+   Font: Roboto (imported in HTML).
+   ============================================================ */
+
+/* ========== GLOBAL RESET & BASE ========== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  /* Base font size 14px throughout the site */
+  font-size: 14px;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  color: #000000;
+  background-color: #ffffff;
+  line-height: 1.4;
+}
+
+/* Remove default list styling */
+ul {
+  list-style: none;
+}
+
+/* ========== HEADER STYLES ========== */
+.main-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #dc4c3e;   /* required header background */
+  color: #ffffff;              /* required header text color */
+  padding: 0 16px;
+  height: 56px;
+}
+
+.header-left,
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Icons in the header */
+.main-header .icon {
+  width: 20px;
+  height: 20px;
+  display: block;
+  filter: brightness(0) invert(1); /* makes dark icons white on red bg */
+}
+
+/* Quick find search box container */
+.search-box {
+  display: flex;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  padding: 4px 8px;
+  gap: 6px;
+}
+
+.search-box .search-icon {
+  width: 16px;
+  height: 16px;
+  opacity: 0.9;
+}
+
+/* Quick find input */
+.quick-find {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #ffffff;
+  width: 180px;
+}
+
+.quick-find::placeholder {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Header right elements */
+.check-icon {
+  width: 18px;
+  height: 18px;
+}
+
+/* Task counter on the right */
+.task-counter {
+  font-size: 14px;
+  font-weight: 500;
+  color: #ffffff;
+}
+
+/* ========== PAGE LAYOUT (FLEXBOX) ========== */
+.app-layout {
+  display: flex;
+  min-height: calc(100vh - 56px); /* fill remaining viewport */
+}
+
+/* ========== LEFT NAVIGATION (SIDEBAR) ========== */
+.sidebar {
+  width: 300px;                 /* required fixed width */
+  background-color: #fefbf2;    /* required sidebar background */
+  color: #000000;               /* main font color */
+  padding: 16px 0;
+  flex-shrink: 0;               /* prevents shrinking */
+}
+
+.nav-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  gap: 12px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.nav-item.active {
+  background-color: #ffffff;
+  font-weight: 500;
+}
+
+.nav-icon {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+.nav-label {
+  flex: 1;                      /* pushes count to the right */
+  font-size: 14px;
+}
+
+/* Task count styling — small, gray, 12px */
+.nav-count {
+  font-size: 12px;              /* required count font size */
+  color: #7e7d79;               /* required count color */
+  font-weight: 400;
+}
+
+/* ========== MAIN CONTENT STYLES ========== */
+.main-content {
+  flex: 1;                      /* takes remaining width */
+  padding: 32px 24px;
+  background-color: #ffffff;
+}
+
+/* H1 "Inbox" — 20px as required */
+.section-title {
+  font-size: 20px;
+  font-weight: 500;
+  color: #000000;
+  margin-bottom: 24px;
+}
+
+/* Task list */
+.task-list {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Each task item */
+.task-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 0;
+  border-bottom: 1px solid #e0e0e0;  /* horizontal rules between tasks */
+}
+
+/* Remove border from last item for cleaner look */
+.task-item:last-child {
+  border-bottom: none;
+}
+
+/* Circular radio button — pure CSS, no images */
+.task-checkbox {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #b0b0b0;
+  border-radius: 50%;
+  background-color: #ffffff;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background-color 0.15s, border-color 0.15s;
+}
+
+/* Hover effect */
+.task-checkbox:hover {
+  border-color: #dc4c3e;
+  background-color: #fff5f4;
+}
+
+/* Focus state */
+.task-checkbox:focus {
+  outline: 2px solid #dc4c3e;
+  outline-offset: 2px;
+}
+
+/* Task text */
+.task-text {
+  font-size: 14px;
+  color: #000000;
+}
+
+/* ========== RESPONSIVE STYLES ========== */
+/* Hide left navigation on viewports 480px or less */
+@media (max-width: 480px) {
+  .sidebar {
+    display: none;
+  }
+
+  .quick-find {
+    width: 120px;
+  }
+
+  .main-content {
+    padding: 24px 16px;
+  }
+}
+
+@media (max-width: 360px) {
+  .quick-find {
+    width: 90px;
+  }
+
+  .header-left {
+    gap: 8px;
+  }
+}
+
+/* ============================================================
+   ASSIGNMENT 2 — REACT ADDITIONS
+   Interactive states for the React version: add form, checkbox,
+   completed tasks, delete button, filters and empty state.
+   ============================================================ */
+
+/* Header counter hover feedback */
+.header-right {
+  cursor: default;
+}
+
+/* Sidebar hover feedback */
+.nav-item:hover {
+  background-color: #f6f1e3;
+}
+
+.nav-item.active:hover {
+  background-color: #ffffff;
+}
+
+/* ========== FILTER BUTTONS ========== */
+.task-filters {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: -12px 0 16px;
+  color: #b0b0b0;
+}
+
+.filter-button {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  background: none;
+  border: none;
+  padding: 2px 4px;
+  color: #7e7d79;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: color 0.15s, background-color 0.15s;
+}
+
+.filter-button:hover {
+  color: #dc4c3e;
+  background-color: #fff5f4;
+}
+
+.filter-button:active {
+  background-color: #fde3e0;
+}
+
+.filter-button.active {
+  color: #dc4c3e;
+  font-weight: 500;
+}
+
+.filter-separator {
+  user-select: none;
+}
+
+/* ========== ADD TASK FORM ========== */
+.task-form {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.task-input {
+  flex: 1;
+  min-width: 0;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  padding: 8px 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.task-input:focus {
+  border-color: #dc4c3e;
+}
+
+.add-button {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  background-color: #dc4c3e;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.add-button:hover {
+  background-color: #c3392b;
+}
+
+.add-button:active {
+  background-color: #a93226;
+}
+
+/* ========== TASK CHECKBOX (native input styled as a circle) ========== */
+input.task-checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  margin: 0;
+  position: relative;
+}
+
+input.task-checkbox:checked {
+  background-color: #dc4c3e;
+  border-color: #dc4c3e;
+}
+
+/* White check mark inside a completed circle */
+input.task-checkbox:checked::after {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 1px;
+  width: 4px;
+  height: 8px;
+  border: solid #ffffff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+input.task-checkbox:active {
+  transform: scale(0.9);
+}
+
+/* ========== TASK ITEM STATES ========== */
+.task-item:hover {
+  background-color: #fafafa;
+}
+
+.task-text {
+  flex: 1;
+  cursor: pointer;
+}
+
+/* Completed tasks: strikethrough and faded */
+.task-item.completed .task-text {
+  text-decoration: line-through;
+  color: #7e7d79;
+}
+
+.task-item.completed {
+  opacity: 0.7;
+}
+
+/* Delete button: hidden until the row is hovered */
+.delete-button {
+  font-size: 18px;
+  line-height: 1;
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 4px;
+  background: none;
+  color: #7e7d79;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.15s, color 0.15s, background-color 0.15s;
+}
+
+.task-item:hover .delete-button,
+.delete-button:focus {
+  opacity: 1;
+}
+
+.delete-button:hover {
+  color: #dc4c3e;
+  background-color: #fff5f4;
+}
+
+.delete-button:active {
+  background-color: #fde3e0;
+}
+
+/* Touch screens have no hover: always show the delete button */
+@media (hover: none) {
+  .delete-button {
+    opacity: 1;
+  }
+}
+
+/* ========== EMPTY STATE ========== */
+.empty-state {
+  padding: 32px 0;
+  text-align: center;
+  color: #7e7d79;
+}
